@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/utils/app_colors.dart';
 
 ThemeData appTheme() {
   return ThemeData(
     useMaterial3: true,
-    fontFamily: 'Cairo',
+    fontFamily: GoogleFonts.almarai().fontFamily,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         elevation: 4,
         selectedIconTheme: IconThemeData(color: AppColors.primaryColor),
         unselectedIconTheme: IconThemeData(color: AppColors.whiteColor)),
     brightness: Brightness.light,
     primaryColor: AppColors.primaryColor,
-    scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
+    scaffoldBackgroundColor: AppColors.whiteColor,
     hintColor: AppColors.hintColor,
     appBarTheme: AppBarTheme(
         backgroundColor: AppColors.whiteColor,
