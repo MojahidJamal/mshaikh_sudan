@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mshaikh_sudan/screens/splash/splash_screen.dart';
 
 import 'config/themes/app_theme.dart';
+
 class MshaikhApp extends StatelessWidget {
   const MshaikhApp({Key? key}) : super(key: key);
 
@@ -14,12 +15,18 @@ class MshaikhApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         child: MaterialApp(
-          title: 'Hawja',
+          title: 'Mshaikh Sudan',
           theme: appTheme(),
           debugShowCheckedModeBanner: false,
           locale: const Locale('Ar'), // Locale for Arabic, or any RTL language
           home: SplashScreen(),
-          builder: EasyLoading.init(),
+          builder: (context, child) {
+            return Directionality(
+              textDirection: TextDirection.rtl, // Force RTL globally
+              child:
+                  EasyLoading.init()(context, child), // Initialize EasyLoading
+            );
+          },
         ));
   }
 }

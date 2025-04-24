@@ -1,31 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../core/utils/app_colors.dart';
 
-import '../utils/app_colors.dart';
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final List<Widget>? actions;
+  final bool centerTitle;
+  final bool showBackButton;
 
-AppBar customAppBar(VoidCallback onTap, List<Widget>? actions, String title) {
-  return AppBar(
-    backgroundColor: Colors.white,
-    // AppBar Background Color
-    elevation: 0,
-    // Remove Shadow
-    leading: IconButton(
-      icon: Icon(Icons.menu, color: Colors.grey.shade800, size: 28),
-      // ☰ Menu Icon
-      onPressed: () {
-// Open Drawer or Perform Action
-      },
-    ),
-    title: Text(
-      title,
-      style: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: AppColors.primaryColor, // Dark Green/Black Text
+  const CustomAppBar({
+    Key? key,
+    required this.title,
+    this.actions,
+    this.centerTitle = true,
+    this.showBackButton = true,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: AppColors.surfaceColor, // app bar background
+      foregroundColor: AppColors.whiteColor, // text/icon color
+      elevation: 0,
+      centerTitle: centerTitle,
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
       ),
-    ),
-    centerTitle: false,
-    // Align title to the left
-    actions: actions ?? [],
-  );
+      leading: showBackButton
+          ? IconButton(
+              icon: const Icon(Icons.arrow_back_ios),
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          : null,
+      actions: actions,
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

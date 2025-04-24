@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mshaikh_sudan/core/reusable_widgets/custom_appBar.dart';
+import 'package:mshaikh_sudan/core/reusable_widgets/track_item_card.dart';
 import 'package:mshaikh_sudan/core/utils/app_colors.dart';
-
-import '../../core/reusable_widgets/home_cards_style.dart';
+import 'package:mshaikh_sudan/core/utils/common_image_view.dart';
+import 'package:mshaikh_sudan/core/utils/image_constant.dart';
+import 'package:mshaikh_sudan/screens/home_screen/widgets/most_popular.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,86 +17,121 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white, // AppBar Background Color
-        elevation: 0, // Remove Shadow
-        leading: Padding(
-
-          padding: EdgeInsets.only(left: 20.w, ),child: Container(
-            height: 20.w,
-            width: 20.w,
-            decoration: const BoxDecoration(
-              color: Color(0x12006754),
-              shape: BoxShape.circle,
-            ),
-            child: IconButton(
-              icon: Icon(Icons.arrow_back_rounded, color: AppColors.primaryColor, size: 20.w), // ☰ Menu Icon
-              onPressed: () {
-                // Open Drawer or Perform Action
-              },
-            ),
-          ),
-        ),
-        title:  Text(
-          "مشايخ السودان",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color:AppColors.primaryColor, // Dark Green/Black Text
-          ),
-        ),
-        centerTitle: false, // Align title to the left
-        // actions: [
-        //   IconButton(
-        //     icon: Icon(Icons.search, color: Colors.grey.shade800, size: 26), // 🔍 Search Icon
-        //     onPressed: () {
-        //       // Search Action
-        //     },
-        //   ),
-        // ],
+      appBar: const CustomAppBar(
+        title: 'مشايخ',
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              MemorizeCard(
-                title: "قران", // Change text dynamically
-                imagePath:
-                    'assets/images/Group.png', // Change image dynamically
-                slopeColor: Colors.green.shade300,
-                containerColor: Colors.green.shade50,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 20.h),
+            const MostPopularWidget(),
+            SizedBox(height: 20.h),
+            Row(
+              children: [
+                Text(
+                  'أبرز المشايخ',
+                  style: textTheme.displayMedium!.copyWith(
+                    color: AppColors.whiteColor,
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 20.h),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(
+                  3,
+                  (index) => Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12.w),
+                    child: InkWell(
+                      onTap: () {},
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 60.h,
+                            width: 60.w,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: ClipOval(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.grey[300],
+                                ),
+                                child: Image.asset('assets/images/person.jpg'),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.h),
+                          Text(
+                            'الشيخ ${index + 1}',
+                            style: textTheme.headlineMedium!.copyWith(
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              const MemorizeCard(
-                title: "أذكار", // Change text dynamically
-                imagePath: 'assets/images/sbha.png', // Change image dynamically
-                slopeColor: Color(0x12FF643D),
-                containerColor: Color(0xFFFEF6F4),
+            ),
+            SizedBox(height: 20.h),
+            Row(
+              children: [
+                Text(
+                  'مختارات متنوعة',
+                  style: textTheme.displayMedium!.copyWith(
+                    color: AppColors.whiteColor,
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: 10.h),
+            TrackItemContainer(
+              leading: CommonImageView(
+                svgPath: IconConstant.playIcon,
+                height: 32.h,
+                width: 32.w,
+                // color: Colors.red,
               ),
-            ],
-          ),
-          SizedBox(height: 20.h,),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              MemorizeCard(
-                title: "Memorize", // Change text dynamically
-                imagePath:
-                    'assets/images/Group.png', // Change image dynamically
-                slopeColor: Color(0x124865FF),
-                containerColor: Color(0xffE2F6F8),
+              title: 'Track Title',
+              subtitle: '3:42',
+              onTap: () {
+                // Play the track
+              },
+              trailing: const Icon(
+                Icons.bookmark_border_rounded,
+                color: Colors.white,
               ),
-              MemorizeCard(
-                title: "Memorize", // Change text dynamically
-                imagePath: 'assets/images/sbha.png', // Change image dynamically
-                slopeColor: Color(0x12FFB92C),
-                containerColor: Color(0xFFFFFAF0),
+            ),
+            SizedBox(height: 10.h),
+            TrackItemContainer(
+              leading: CommonImageView(
+                svgPath: IconConstant.playIcon,
+                height: 32.h,
+                width: 32.w,
+                // color: Colors.red,
               ),
-            ],
-          ),
-        ],
+              title: 'Track Title',
+              subtitle: '3:42',
+              onTap: () {
+                // Play the track
+              },
+              trailing: const Icon(
+                Icons.bookmark_border_rounded,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
