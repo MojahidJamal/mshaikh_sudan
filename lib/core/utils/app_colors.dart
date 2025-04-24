@@ -22,4 +22,5 @@ class AppColors {
   static Color scaffoldBackgroundColor = const Color(
       0xFF121212); // Scaffold background - same as backgroundColor for consistency.
   static Color grayText = const Color(0xFF737373); // placeholderText
+  static const Color thirdColor = Color(0xFF8E8E93); // A subtle muted grey-blue
 }

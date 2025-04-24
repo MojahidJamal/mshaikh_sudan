@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mshaikh_sudan/screens/home_screen/views/main_nav_bar_view.dart';
 
-import '../home_screen/home_screen.dart';
+import '../home_screen/views/home_view.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -16,10 +17,10 @@ class _SplashScreenState extends State<SplashScreen> {
     // Simulate some initialization tasks
     Timer(
       const Duration(milliseconds: 3),
-          () {
+      () {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
+            builder: (context) => const MainNavBar(),
           ),
         );
       },

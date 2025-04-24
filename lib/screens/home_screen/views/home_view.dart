@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: 'مشايخ',
+        showBackButton: false,
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 8.w),
@@ -100,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 svgPath: IconConstant.playIcon,
                 height: 32.h,
                 width: 32.w,
-                // color: Colors.red,
+                color: AppColors.secondaryColor,
               ),
               title: 'Track Title',
               subtitle: '3:42',
@@ -118,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 svgPath: IconConstant.playIcon,
                 height: 32.h,
                 width: 32.w,
-                // color: Colors.red,
+                color: AppColors.secondaryColor,
               ),
               title: 'Track Title',
               subtitle: '3:42',
