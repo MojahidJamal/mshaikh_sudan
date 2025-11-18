@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:mshaikh_sudan/screens/home_screen/views/main_nav_bar_view.dart';
 
-import '../home_screen/views/home_view.dart';
-
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();

@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mshaikh_sudan/core/utils/app_colors.dart';
 import 'package:mshaikh_sudan/core/utils/common_image_view.dart';
 import 'package:mshaikh_sudan/core/utils/image_constant.dart';
+import 'package:mshaikh_sudan/screens/categories/categories_screen.dart';
 import 'package:mshaikh_sudan/screens/home_screen/views/home_view.dart';
+import 'package:mshaikh_sudan/screens/settings/settings_screen.dart';
 
 class MainNavBar extends StatefulWidget {
   const MainNavBar({super.key});
@@ -23,11 +25,11 @@ class _MainNavBarState extends State<MainNavBar> {
         height: 60.h,
         decoration: BoxDecoration(
           border: Border(
-            top: BorderSide(color: AppColors.thirdColor.withOpacity(0.2)),
+            top: BorderSide(color: AppColors.thirdColor.withValues(alpha: 0.2)),
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
               spreadRadius: 0,
               blurRadius: 15,
               offset: const Offset(0, -3),
@@ -102,8 +104,8 @@ class _MainNavBarState extends State<MainNavBar> {
   Widget buildNavPage(int index) {
     List<Widget> pages = [
       const HomeScreen(),
-      const HomeScreen(),
-      const HomeScreen(),
+      const CategoriesScreen(),
+      const SettingsScreen(),
     ];
     return pages[index];
   }
